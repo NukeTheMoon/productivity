@@ -1,0 +1,37 @@
+@mixin triangle($dir, $size, $color) {
+  width: 0;
+  height: 0;
+  border: $size transparent solid;
+
+  @if ($dir == "top" or $dir == "up") {
+    border-bottom-color: $color;
+    border-top-width: 0;
+  } @else if ($dir == "right" or $dir == "after") {
+    border-left-color: $color;
+    border-right-width: 0;
+  } @else if ($dir == "bottom" or $dir == "down") {
+    border-top-color: $color;
+    border-bottom-width: 0;
+  } @else if ($dir == "left" or $dir == "before") {
+    border-right-color: $color;
+    border-left-width: 0;
+  }
+}
+
+@mixin equilateral-triangle($dir, $size, $color) {
+  @include triangle($dir, $size, $color);
+
+  @if ($dir == "top" or $dir == "up") {
+    border-bottom-width: equilateral-triangle-height($size);
+  } @else if ($dir == "right" or $dir == "after") {
+    border-left-width: equilateral-triangle-height($size);
+  } @else if ($dir == "bottom" or $dir == "down") {
+    border-top-width: equilateral-triangle-height($size);
+  } @else if ($dir == "left" or $dir == "before") {
+    border-right-width: equilateral-triangle-height($size);
+  }
+}
+
+@function equilateral-triangle-height($side) {
+  @return $side * 2 * 0.8660254;
+}
