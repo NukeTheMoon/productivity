@@ -32,6 +32,6 @@
   }
 }
 
-@function equilateral-triangle-height($side) {
-  @return $side * 2 * 0.8660254;
+@function equilateral-triangle-height($size) {
+  @return $size * 2 * 0.8660254;
 }
